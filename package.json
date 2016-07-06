@@ -11,8 +11,7 @@
     "type": "git"
   },
   "license": "MIT",
-  "bugs": {
-  },
+  "bugs": {},
   "dependencies": {
     "autoprefixer": "^6.3.6",
     "babel": "^6.1.18",
@@ -43,6 +42,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-spec-reporter": "0.0.26",
     "karma-webpack": "^1.7.0",
-    "react-addons-test-utils": "^15.0.0"
+    "react-addons-test-utils": "^15.0.0",
+    "webpack-dev-server": "^1.14.1"
   }
 }
