@@ -5,7 +5,7 @@
   "main": "./client/index.html",
   "scripts": {
     "test": "karma start",
-    "start": "webpack-dev-server --inline --hot --content-base client/"
+    "start": "webpack -d && webpack-dev-server --inline --hot --content-base client/ && webpack --watch"
   },
   "repository": {
     "type": "git"
