@@ -2,6 +2,11 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import router from './router.js';
+import mongoose from 'mongoose';
+
+const mongoDB_URI = process.env.MONGODB_URI || 'mongodb://localhost/mydb';
+
+mongoose.connect(mongoDB_URI);
 
 const app = express();
 const port = process.env.PORT || 8080;
