@@ -10,7 +10,12 @@ class App extends React.Component {
   }
 
   render() {
-    return <h1>Hello, Massdrop</h1>;
+    return (
+      <form>
+        Please enter your url:<br></br>
+        <input type="text" name="url"></input>
+      </form>
+    );
   }
 
 }
