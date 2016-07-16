@@ -1,3 +1,6 @@
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 // webpack.config.js exports a configuration object in the CommonJS pattern.
 module.exports = {
 
@@ -25,7 +28,7 @@ module.exports = {
     publicPath: 'client/dist',
 
     // `filename` tells Webpack what to call the file/files it outputs.
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
   },
 
   // `module` is an object with options for how Webpack processes the files it loads
@@ -71,13 +74,37 @@ module.exports = {
           presets: ['react', 'es2015'],
         },
       },
-
       {
         test: /\.jsx?$/,
         loader: 'eslint-loader',
         exclude: /node_modules/,
       },
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
+      },
+      {
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader'),
+      },
     ],
+  },
+  resolve: {
+    extensions: ['', '.scss', '.js', 'jsx', '.json'],
+    packageMains: ['browser', 'web', 'browserify', 'main', 'style'],
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('test'),
+    }),
+    new ExtractTextPlugin('[name].bundle.css'),
+  ],
+  node: {
+    net: 'empty',
+    tls: 'empty',
+    dns: 'empty',
+    fs: 'empty',
   },
 
 };
+

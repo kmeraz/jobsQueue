@@ -8,4 +8,4 @@ http://stackoverflow.com/questions/30773756/is-it-okay-to-use-babel-node-in-prod
 */
 
 require('babel-register');
-var massdropApp = require('./server/index.js');
+var myApp = require('./server/index.js');
