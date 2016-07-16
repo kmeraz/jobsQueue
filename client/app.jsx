@@ -5,11 +5,12 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      url: '',
     };
   }
 
   render() {
-    return <h1>Hello, World</h1>;
+    return <h1>Hello, Massdrop</h1>;
   }
 
 }

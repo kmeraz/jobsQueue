@@ -1,11 +1,12 @@
 {
-  "name": "ReactBoilerplate",
+  "name": "massdrop",
   "version": "1.0.0",
   "description": "Boilerplate repo for React/Webpack/Babel app",
   "main": "./client/index.html",
   "scripts": {
     "test": "karma start",
-    "start": "webpack -d && webpack-dev-server --inline --hot --content-base client/ && webpack --watch"
+    "start": "webpack -d && webpack-dev-server --inline --hot --content-base client/ && webpack --watch",
+    "dev-start": "webpack -d && NODE_ENV=dev nodemon precompile.js --debug & webpack --watch"
   },
   "repository": {
     "type": "git"
@@ -26,6 +27,7 @@
     "eslint-plugin-react": "^4.3.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "jasmine-core": "^2.4.1",
+    "morgan": "^1.7.0",
     "node-sass": "^3.4.2",
     "nodemon": "^1.9.1",
     "react": "^15.0.0",
