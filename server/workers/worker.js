@@ -1,6 +1,7 @@
 import request from 'request';
 import * as db from '../controllers/db.js';
 import * as jobsQueue from '../controllers/jobsQueue.js';
+import Url from '../models/Url.js';
 
 export default setInterval(() => {
   let job;
@@ -12,7 +13,9 @@ export default setInterval(() => {
         if (error) {
           console.log('error', error);
         } else {
-          db.
+          // db.
+
+
         }
       });
     }
@@ -20,6 +23,4 @@ export default setInterval(() => {
   .catch((err) => {
     console.log('error', err);
   });
-
-  
 }, 5000);

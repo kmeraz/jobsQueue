@@ -1,18 +1,21 @@
 import Url from '../models/Url.js';
 
-export const storeDomainName = (url) => {
-  Url.create({
-    url: url,
-    status: 'pending',
-    html: '',
+export const storeDomainName = (jobID, url) => {
+  return new Promise((resolve, reject) => {
+    Url.create({
+      jobID: jobID,
+      url: url,
+      status: 'pending',
+      html: '',
   }, (err, data) => {
     if (err) {
       console.log('Error! We were unable to add your url to the db', err);
-      return err;
+      reject(err);
     } else {
       console.log('Success! Url created and added to the db', data);
-      return data;
+      resolve(data);
     }
+    });
   });
 };
 

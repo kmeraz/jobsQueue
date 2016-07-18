@@ -4,7 +4,7 @@ import morgan from 'morgan';
 import router from './router.js';
 import mongoose from 'mongoose';
 
-// import worker from './workers/worker.js';
+import worker from './workers/worker.js';
 
 const mongoDB_URI = process.env.MONGODB_URI || 'mongodb://localhost/mydb';
 
