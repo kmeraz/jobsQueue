@@ -11,7 +11,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <form action="links">
+      <form action="links" method="post">
         Please enter your url:<br></br>
         <input type="text" name="url"></input>
       </form>
