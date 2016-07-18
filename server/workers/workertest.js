@@ -3,7 +3,7 @@ import * as db from '../controllers/mainController.js';
 import * as jobsQueue from '../controllers/jobsQueue.js';
 
 
-export default () => {
+export default setInterval(() => {
   let job;
 
   jobsQueue.grabJob()
@@ -27,4 +27,4 @@ export default () => {
       }
     });
   }
-};
+}, 5000);
