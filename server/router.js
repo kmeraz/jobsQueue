@@ -3,7 +3,7 @@ import * as jobsQueue from './controllers/jobsQueue.js';
 // we take in the app and express objects and provide
 // the framework for the routing of the app
 /// for testing
-import worker from './workers/workertest.js';
+import worker from './workers/worker.js';
 
 // testing^^&
 export default (app, express) => {
@@ -19,7 +19,7 @@ export default (app, express) => {
 
   app.post('/links', (req, res) => {
     const url = req.query.url;
-    
+
     jobsQueue.getNewJobID()
     .then((id) => {
       jobsQueue.addNewJob(id, url)
