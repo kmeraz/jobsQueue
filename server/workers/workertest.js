@@ -1,16 +1,16 @@
-import { CronJob } from 'cron';
 import request from 'request';
 import * as db from '../controllers/mainController.js';
 import * as jobsQueue from '../controllers/jobsQueue.js';
 
-export default new CronJob('* * * * * *', () => {
-  // console.log('You will see this message every second');
+
+export default () => {
   let job;
 
   jobsQueue.grabJob()
   .then((reply) => {
     job = reply;
     console.log('this is job', reply);
+    return reply;
   })
   .catch((err) => {
     console.log('error', err);
@@ -27,5 +27,4 @@ export default new CronJob('* * * * * *', () => {
       }
     });
   }
-
-}, null, true, 'America/Los_Angeles');
+};

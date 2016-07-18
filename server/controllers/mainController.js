@@ -16,14 +16,6 @@ export const storeDomainName = (url) => {
   });
 };
 
-export const addToJobsQueue = (url) => {
-  // jobsQueue.push([{
-  //   id: id,
-  //   url: url,
-  // },
-  // ]);
-  // // return id++;
-};
 
 export const addHtml = (id, html) => {
   Url.findOneAndUpdate(id, {
