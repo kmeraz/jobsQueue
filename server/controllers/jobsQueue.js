@@ -4,10 +4,8 @@ export const getNewJobID = () => {
   return new Promise((resolve, reject) => {
     redisClient.incr('jobCount', (err, reply) => {
       if (err) {
-        console.log('this is err', err);
         reject(err);
       } else {
-        console.log('this is reply', reply);
         resolve(reply);
       }
     });
