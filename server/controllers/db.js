@@ -1,6 +1,6 @@
 import Url from '../models/Url.js';
 
-export const storeDomainName = (jobID, url) => {
+export const storeUrl = (jobID, url) => {
   return new Promise((resolve, reject) => {
     Url.create({
       jobID: jobID,
@@ -20,28 +20,51 @@ export const storeDomainName = (jobID, url) => {
 };
 
 
-export const addHtml = (id, html) => {
-  Url.findOneAndUpdate(id, {
-    html: html,
-  }, (err, data) => {
-    if (err) {
-      console.log('Error! We were unable to add the html to the record', err);
-      return err;
-    } else {
-      console.log('Success! The HTML was added to the url\'s record', data);
-      return data;
-    }
+export const addHTML = (id, html) => {
+  return new Promise((resolve, reject) => {
+    Url.findOneAndUpdate(id, {
+      html: html,
+      status: 'finished',
+    }, (err, data) => {
+      if (err) {
+        // console.log('Error! We were unable to add the html to the record', err);
+        reject(err);
+      } else {
+        // console.log('Success! The HTML was added to the url\'s record', data);
+        resolve(data);
+      }
+    });
   });
 };
 
-export const retrieveHTML = (id) => {
-  Url.findById(id, (err, data) => {
-    if (err) {
-      console.log('Error! We were unable to retrieve the HTML for job', 1);
-      return err;
-    } else {
-      console.log('Success! Here is the HTML for the job', data);
-      return data;
+export const retrieveHTML = (jobID) => {
+  return new Promise((resolve, reject) => {
+    Url.find({
+      jobID: jobID,
+    }, (err, data) => {
+      if (err) {
+        console.log('Error! We were unable to retrieve the HTML for job', id);
+        reject(err);
+      } else {
+        console.log('Success! Here is the HTML for the job', data);
+        resolve(data[0]);
+      }
+    });
+  });
+};
+
+export const isUrlAlreadyStored = (url) => {
+  return new Promise((resolve, reject) => {
+    Url.find({
+      url: url,
+      status: 'finished',
+    }, (err, reply) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(reply);
+      }
     }
+    );
   });
 };

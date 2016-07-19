@@ -15,10 +15,12 @@ export const getNewJobID = () => {
 export const addNewJob = (id, url) => {
   return new Promise((resolve, reject) => {
     const payload = JSON.stringify({ id: id, url: url });
+    console.log('this is payload within addNewJob', payload);
     redisClient.rpush('jobsQueue', [payload], (err, reply) => {
       if (err) {
         reject(err);
       } else {
+        console.log('this is reply within addNewJob', reply);
         resolve(JSON.parse(reply));
       }
     });
