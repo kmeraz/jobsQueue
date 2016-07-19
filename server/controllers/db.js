@@ -46,8 +46,7 @@ export const retrieveHTML = (jobID) => {
         console.log('Error! We were unable to retrieve the HTML for job', id);
         reject(err);
       } else {
-        console.log('Success! Here is the HTML for the job', data);
-        resolve(data[0]);
+        data.length === 0 ? resolve(false) : resolve(data[0]);
       }
     });
   });
@@ -57,12 +56,11 @@ export const isUrlAlreadyStored = (url) => {
   return new Promise((resolve, reject) => {
     Url.find({
       url: url,
-      status: 'finished',
-    }, (err, reply) => {
+    }, (err, data) => {
       if (err) {
         reject(err);
       } else {
-        resolve(reply);
+        data.length === 0 ? resolve(false) : resolve(data[0]);
       }
     }
     );

@@ -1,5 +1,6 @@
 import * as db from './controllers/db.js';
 import * as jobsQueue from './controllers/jobsQueue.js';
+import isInt from 'validator/lib/isInt';
 // we take in the app and express objects and provide
 // the framework for the routing of the app
 
@@ -11,22 +12,29 @@ export default (app, express) => {
   // we accept the url and return a job id
   app.get('/links', (req, res) => {
     const jobID = req.query.jobID;
+  
+    // Form validation. We want to make sure that the user inputs a number
+    // as the job ID. If not, then we kindly remind them.
+    if (!isInt(jobID)) {
+      res.send('Please make sure to enter a number as your job ID. Thanks!');
+    } else {
+      // Great! The user has entered a number as the jobID. Now, we
+      // can proceed as planned.
 
-    db.retrieveHTML(jobID)
-    .then((result) => {
-      console.log('this is result', result);
-      if (result.status === 'pending') {
-        res.send('Your job is pending. Please check back in a few moments');
-      } else if (result.status === 'finished') {
-        console.log('this is html', result.html);
-        res.send(result.html);
-      } else {
-        res.send('A job with that ID does not exist. Please check your job ID and try again.');
-      }
-    })
-    .catch((err) => {
-      res.send('A job with that ID does not exist.');
-    });
+      db.retrieveHTML(JSON.parse(jobID))
+      .then((result) => {
+        if (result.status === 'pending') {
+          res.send('Your job is pending. Please check back in a few moments.');
+        } else if (result.status === 'finished') {
+          res.send(result.html);
+        } else {
+          res.send('A job with that ID does not exist. Please double check your job ID and try again.');
+        }
+      })
+      .catch((err) => {
+        res.status(500).send('Ouch! Our server needs a second. Try again soon.');
+      });
+    }
   });
 
   app.post('/links', (req, res) => {
@@ -40,25 +48,30 @@ export default (app, express) => {
 
     db.isUrlAlreadyStored(url)
     .then((result) => {
+      // If the URL has a status of pending, then let the user know that
+      // the job is currently in progress and give them the job ID to check
+      // back with.
 
-      // if the result is of length 0,
-      // then that means the url + html
-      // are not already in our db
-      console.log('this is result from isUrlAlreadyStored.length', result.length);
+      if (result.status === 'pending') {
+        res.send(`Another job with the same url of ${result.url} is currently being processed. Please check back in a few moments with jobID ` + result.jobID + ` for your HTML.`);
 
-      if (result.length === 0) {
-        // We will add the job to the jobsQueue
+      } else if (result.status === 'finished') {
+        // the job has previously been processed
+        // and we already have the HTML for the user.
+        res.send(`Lucky you! This URL has already been processed. Enter the jobID: ${result.jobID} to retrieve the HTML`);
+      } else {
+
+        // Else, we will add the job to the jobsQueue
         // for our worker to take care of.
 
         // We create a new jobID for the latest job
 
         jobsQueue.getNewJobID()
         .then((id) => {
-          console.log('this is job id', id);
           jobID = id;
         })
         .catch((err) => {
-          console.log('Error. Please try again in a few moments', err);
+          res.sendStatus(504);
         })
         .then(() => {
           // Then we store the domain name into MongoDB, along
@@ -87,21 +100,11 @@ export default (app, express) => {
           console.log('error', err);
           res.sendStatus(404);
         });
-      } else if (result.status === 'pending') {
-
-        // If the URL has a status of pending, then let the user know that
-        // the job is currently in progress and give them the job ID to check
-        // back with.
-
-        res.send('Another job with the same url is currently being processed. Please check back in a few moments with jobID' + result.jobID);
-      } else {
-        // Else, the job has previously been processed
-        // and we already have the HTML for the user.
-
-        res.send('Your job has previously been processed. Enter this jobID to retrieve the HTML:' + result.jobID);
       }
+    })
+    .catch((err) => {
+      res.sendStatus(500);
     });
-
 
   });
 };
