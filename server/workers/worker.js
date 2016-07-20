@@ -2,24 +2,27 @@ import request from 'request';
 import * as db from '../controllers/db.js';
 import * as jobsQueue from '../controllers/jobsQueue.js';
 
-// export default setInterval(() => {
+export default setInterval(() => {
+  console.log('please work ove rn over');
+  jobsQueue.grabJob()
+  .then((job) => {
+    if (job) {
+      request.get('http://' + job.url, (error, response, body) => {
+        if (error) {
+          console.log('error', error);
+        } else {
+          db.addHTML(job.id, body)
+          .then((data) => {
+            console.log('data', job.url);
+          })
+          .catch((err) => {
 
-//   jobsQueue.grabJob()
-//   .then((job) => {
-//     if (job) {
-//       request.get('http://' + job.url + "'", (error, response, body) => {
-//         if (error) {
-//           console.log('error', error);
-//         } else {
-//           db.addHTML(job.id, body)
-//           .then((data) => {
-//             console.log('data');
-//           });
-//         }
-//       });
-//     }
-//   })
-//   .catch((err) => {
-//     console.log('error', err);
-//   });
-// }, 5000);
+          });
+        }
+      });
+    }
+  })
+  .catch((err) => {
+    console.log('error', err);
+  });
+}, 5000);

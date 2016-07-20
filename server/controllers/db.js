@@ -20,9 +20,12 @@ export const storeUrl = (jobID, url) => {
 };
 
 
-export const addHTML = (id, html) => {
+export const addHTML = (jobID, html) => {
   return new Promise((resolve, reject) => {
-    Url.findOneAndUpdate(id, {
+    Url.findOneAndUpdate({
+      jobID: jobID,
+      },
+      {
       html: html,
       status: 'finished',
     }, (err, data) => {
