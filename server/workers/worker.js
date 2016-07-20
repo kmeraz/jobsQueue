@@ -3,7 +3,6 @@ import * as db from '../controllers/db.js';
 import * as jobsQueue from '../controllers/jobsQueue.js';
 
 export default setInterval(() => {
-  console.log('please work ove rn over');
   jobsQueue.grabJob()
   .then((job) => {
     if (job) {
@@ -16,7 +15,7 @@ export default setInterval(() => {
             console.log('data', job.url);
           })
           .catch((err) => {
-
+            console.log('error', err);
           });
         }
       });

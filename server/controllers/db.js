@@ -30,10 +30,8 @@ export const addHTML = (jobID, html) => {
       status: 'finished',
     }, (err, data) => {
       if (err) {
-        // console.log('Error! We were unable to add the html to the record', err);
         reject(err);
       } else {
-        // console.log('Success! The HTML was added to the url\'s record', data);
         resolve(data);
       }
     });
