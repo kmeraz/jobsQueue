@@ -13,7 +13,9 @@ then
 ## Install the necessary npm packages globally
 
 `npm install -g webpack`
+
 `npm install -g nodemon`
+
 `npm install -g mocha`
 
 ## Ensure that you have Redis and MongoDB installed
@@ -27,4 +29,5 @@ If you do not, then run
 
 From your terminal, run:
 `mongod`
+
 `redis-server` 
