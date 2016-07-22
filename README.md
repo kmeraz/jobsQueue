@@ -1,26 +1,30 @@
-# reactBoilerplate
+# jobsQueue
 
-A barebones repo to get you started with Webpack, Babel, and React. 
+An application that allows a user to retrieve a website's HTML
 
 ## Installation
 
-`git clone https://github.com/kmeraz/reactBoilerplate`
+`git clone https://github.com/kmeraz/jobsQueue`
 
 then
 
 `npm install`
 
-## Serve your files on a webpack server (with hotloading!)
+## Install the necessary npm packages globally
 
-`npm start`
+`npm install -g webpack`
+`npm install -g nodemon`
+`npm install -g mocha`
 
-Then go to localhost:8080.
+## Ensure that you have Redis and MongoDB installed
 
-## Process and bundle your files
+If you do not, then run
 
-`webpack`
+`brew install redis`
+`brew install mongodb`
 
-## Re-process and re-bundle your files whenever you make a change
+## Then, run the Redis and MongoDB services
 
-`webpack --watch`
-
+From your terminal, run:
+`mongod`
+`redis-server` 

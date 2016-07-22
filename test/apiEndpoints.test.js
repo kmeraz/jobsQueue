@@ -18,7 +18,7 @@ describe('API Endpoints', () => {
       request.get({ url: baseUrl + 'links', qs: { jobID: '1' } },
         (error, response, body) => {
           expect(response.statusCode).to.equal(200);
-          expect(body*100).to.be.true;
+          expect(isNaN(body)).to.be.true;
           done();
         });
     });
