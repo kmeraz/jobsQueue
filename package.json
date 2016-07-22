@@ -6,7 +6,8 @@
   "scripts": {
     "test": "karma start",
     "start": "webpack -d && webpack-dev-server --inline --hot --content-base client/ && webpack --watch",
-    "dev-start": "webpack -d && NODE_ENV=dev nodemon precompile.js --debug & webpack --watch"
+    "dev-start": "webpack -d && NODE_ENV=dev nodemon precompile.js --debug & webpack --watch",
+    "test": "mocha"
   },
   "repository": {
     "type": "git"
