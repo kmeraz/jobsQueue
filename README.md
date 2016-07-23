@@ -44,6 +44,10 @@ From your terminal, run:
 
 `redis-server`
 
+### Finally, to start the application:
+
+`npm run dev-start`
+
 ## Tech Stack Highlights
 
 ·[React](https://facebook.github.io/react/)
