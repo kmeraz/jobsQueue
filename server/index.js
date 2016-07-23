@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import router from './router.js';
 import mongoose from 'mongoose';
+import compression from 'compression';
 
 import worker from './workers/worker.js';
 
@@ -13,6 +14,7 @@ mongoose.connect(mongoDB_URI);
 const app = express();
 const port = process.env.PORT || 8080;
 app.use(morgan('dev'));
+app.use(compression());
 app.use(express.static(`${__dirname}/../client/`));
 
 router(app, express);
