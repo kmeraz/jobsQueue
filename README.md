@@ -40,7 +40,7 @@ If you do not, then run:
 
 From your terminal, run:
 
-`mongod`
+`mongod --dbpath server/db/data`
 
 `redis-server`
 

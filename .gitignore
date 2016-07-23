@@ -3,3 +3,5 @@ dist/
 npm-debug.log
 architectureFile.gliffy
 architecture.jpg
+server/db/.DS_Store
+.DS_Store
