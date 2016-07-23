@@ -52,15 +52,15 @@ and navigate your browser to localhost:8080, or hit the API in the manner of you
 
 ## Tech Stack Highlights
 
-- [React](https://facebook.github.io/react/)
+- [React 15.0](https://facebook.github.io/react/)
 
-- [Node](https://nodejs.org/en/)
+- [Node 6.2](https://nodejs.org/en/)
 
-- [Express](http://expressjs.com/)
+- [Express 4.14](http://expressjs.com/)
 
-- [Redis](http://redis.io/)
+- [Redis 3.2](http://redis.io/)
 
-- [MongoDB](https://www.mongodb.com/)
+- [MongoDB 3.2](https://www.mongodb.com/)
 
 
 ## Tech Justification
