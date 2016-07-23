@@ -3,11 +3,11 @@
 An application that allows users to retrieve any website's HTML
 
 ##Table of Contents
-1. [Getting Set Up] (#Getting-Set-Up)
-2. [Tech Stack Highlights] (#Tech-Stack)
-3. [Tech Justification] (#Tech-Justification)
-4. [High-Level Architecture] (#High-Level-Architecture)
-5. [API Reference] (#API-Reference)
+1. [Getting Set Up] (#getting-set-up)
+2. [Tech Stack Highlights] (#tech-stack)
+3. [Tech Justification] (#tech-justification)
+4. [High-Level Architecture] (#high-level-architecture)
+5. [API Reference] (#api-reference)
 
 
 ## Getting Set Up
