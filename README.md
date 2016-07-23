@@ -47,10 +47,15 @@ From your terminal, run:
 ## Tech Stack Highlights
 
 ·[React](https://facebook.github.io/react/)
+
 ·[Node](https://nodejs.org/en/)
+
 ·[Express](http://expressjs.com/)
+
 ·[Redis](http://redis.io/)
+
 ·[MongoDB](https://www.mongodb.com/)
+
 
 ## Tech Justification
 
@@ -67,6 +72,11 @@ From your terminal, run:
 ## High-Level Architecture
 ![Sorry, the schema image cannot be displayed. View it at http://i.imgur.com/LlUtAa8.jpg](http://i.imgur.com/LlUtAa8.jpg)
 
+## API Reference
+| API Endpoint        | Type        | Description
+| :------------- |:-------- |:-------- 
+| /links      | POST | Expects an object with the key, 'url', and a url as the value. An example is {url: 'www.massdrop.com'}. If the url has not previously been entered, then it is added to the jobsQueue and a record is created in MongoDB. If has been entered before, then the user is informed. If its status is pending, then the user is advised to check back in a few moments. If the same url has been processed before, then the user is give the jobID to enter that will return the HTML. |
+| /links | GET | If the jobID is in the system, the the user is given the status of the process. If the process has finished then they are given the HTML. If the process is still pending, then they are told so. If the jobID does not exist, then they are advised to check the jobID they entered. | 
 
 
 
