@@ -48,6 +48,8 @@ From your terminal, run:
 
 `npm run dev-start`
 
+and navigate your browser to localhost:8080, or hit the API in the manner of your preference.
+
 ## Tech Stack Highlights
 
 ·[React](https://facebook.github.io/react/)
