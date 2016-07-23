@@ -1,7 +1,7 @@
 {
-  "name": "massdrop",
+  "name": "jobsQueue",
   "version": "1.0.0",
-  "description": "Boilerplate repo for React/Webpack/Babel app",
+  "description": "A job queue built to fetch a given URL's HTML",
   "main": "./client/index.html",
   "scripts": {
     "test": "mocha",
